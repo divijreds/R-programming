@@ -1,0 +1,174 @@
+---
+title: "Practical 4"
+author: "Divij"
+date: "8/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Histogram
+
+```{r}
+require(ggplot2)
+str(diamonds)
+hist(diamonds$carat, main="Carat Histogram", xlab="carat")
+```
+
+##  Scater Plot
+
+```{r}
+plot(price ~ carat, data = diamonds)
+```
+
+##  Box Plot
+
+```{r}
+boxplot(diamonds$carat)
+```
+
+##  ggPlot geom_histogram
+
+```{r}
+ggplot(data = diamonds) + geom_histogram(aes(x=carat))
+```
+
+##  ggPlot geom_density
+
+```{r}
+ggplot(data = diamonds) + geom_density(aes(x=carat),fill="grey50")
+```
+
+##  ggPlot geom_density
+
+```{r}
+ggplot(data = diamonds) + geom_density(aes(x=carat),fill="cyan")
+```
+
+##  ggPlot geom_density yellow
+
+```{r}
+ggplot(data = diamonds) + geom_density(aes(x=carat),fill="yellow")
+```
+
+##  ggPlot geom_point
+
+```{r}
+ggplot(diamonds, aes(x=carat, y=price)) + geom_point()
+```
+
+##  ggPlot geom_point color
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=color))
+```
+
+##  ggPlot geom_point cut
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=cut))
+```
+
+##  ggPlot geom_point clarity
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=clarity))
+```
+
+##  ggPlot geom_point color facet_wrap color
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=color)) + facet_wrap(~color)
+```
+
+##  ggPlot geom_point color facet_wrap cut
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=color)) + facet_wrap(~cut)
+```
+
+##  ggPlot geom_point color facet_wrap clarity
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=color)) + facet_wrap(~clarity)
+```
+
+##  ggPlot geom_point color facet_grid cut vs clarity
+
+```{r}
+g <- ggplot(diamonds, aes(x=carat, y=price)) 
+g + geom_point(aes(color=color)) + facet_grid(cut ~ clarity)
+```
+
+##  ggPlot geom_boxplot
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_boxplot()
+```
+
+##  ggPlot geom_violin
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_violin()
+```
+
+##  ggPlot geom_boxplot
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut, color=color)) + geom_boxplot()
+```
+
+##  ggPlot geom_point geom_boxplot
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_point() + geom_boxplot()
+```
+
+##  ggPlot geom_boxplot geom_point
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_boxplot() + geom_point()
+```
+
+##  ggPlot geom_point geom_violin
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_point() + geom_violin()
+```
+
+##  ggPlot geom_violin geom_point
+
+```{r}
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_violin() + geom_point()
+```
+
+##  ggPlot geom_line
+
+```{r}
+ggplot(economics, aes(y=date, x=pop)) + geom_line() 
+```
+
+##  ggPlot geom_line
+
+```{r}
+require(ggplot2)
+require(ggthemes)
+
+g2 <- ggplot(diamonds, aes(x=carat, y=price)) + geom_point(aes(color=color))
+
+g2 + theme_economist() + scale_color_economist()
+```
+```{r}
+x <- rnorm(200)
+hist(x,main="Histogram",
+     ylim=c(0,0.5),prob=TRUE)
+lines(density(x),col="blue")
+```
